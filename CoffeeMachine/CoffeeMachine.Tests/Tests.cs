@@ -27,5 +27,17 @@ namespace CoffeeMachine.Tests
             Assert.AreEqual(drinkTwo, "Drink maker makes 1 chocolate with no sugar and no stick");
             Assert.AreEqual(drinkThree, "Drink maker makes 1 coffee with 2 sugars and a stick");
         }
+
+        [Test]
+        public void Drink_are_payed()
+        {
+            string drinkOne = DrinkFactory.CreateDrink("T:1:0", 0.1);
+            string drinkTwo = DrinkFactory.CreateDrink("H::", 1);
+            string drinkThree = DrinkFactory.CreateDrink("C:2:0", 0.6);
+
+            Assert.AreEqual(drinkOne, "You need 0,3");
+            Assert.AreEqual(drinkTwo, "Drink maker makes 1 chocolate with no sugar and no stick");
+            Assert.AreEqual(drinkThree, "Drink maker makes 1 coffee with 2 sugars and a stick");
+        }
     }
 }

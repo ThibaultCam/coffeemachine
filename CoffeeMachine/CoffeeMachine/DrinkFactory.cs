@@ -45,5 +45,29 @@ namespace CoffeeMachine
 
             return stringBuilder.ToString();
         }
+
+        public static string CreateDrink(string order, double money)
+        {
+            string[] ingredients = order.Split(':');
+            switch (ingredients[0])
+            {
+                case "C":
+                    if (money < 0.6)
+                        return "You need " + (0.6 - money).ToString();
+                    break;
+                case "T":
+                    if (money < 0.4)
+                        return "You need " + (0.4 - money).ToString();
+                    break;
+                case "H":
+                    if (money < 0.5)
+                        return "You need " + (0.5 - money).ToString();
+                    break;
+                default:
+                    return "Bad order";
+            }
+
+            return CreateDrink(order);
+        }
     }
 }
