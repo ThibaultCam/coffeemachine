@@ -80,5 +80,38 @@ namespace CoffeeMachine.Tests
             Assert.Contains("Number of hot tea : 1", list);
             Assert.Contains("Number of coffee : 0", list);
         }
+
+        [Test]
+        public void T5_Qt_checker()
+        {
+            DrinkFactory.ResetData();
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("Ch::", 1);
+            DrinkFactory.CreateDrink("Hh:1:0", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.1);
+            DrinkFactory.CreateDrink("O::", 0.1);
+            DrinkFactory.CreateDrink("O::", 0.1);
+            DrinkFactory.CreateDrink("O::", 0.1);
+            DrinkFactory.CreateDrink("O::", 0.1);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("Ch::", 1);
+            DrinkFactory.CreateDrink("Hh:1:0", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("Ch::", 1);
+            DrinkFactory.CreateDrink("Hh:1:0", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            string drinkOne = DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            DrinkFactory.CreateDrink("O::", 0.6);
+            string drinkTwo = DrinkFactory.CreateDrink("O::", 0.6);
+
+            Assert.AreNotEqual(drinkOne, "No more drinks avaible");
+            Assert.AreEqual(drinkTwo, "No more drinks avaible");
+        }
     }
 }

@@ -11,10 +11,20 @@ namespace CoffeeMachine
         static string[] numbers = new string[] { "no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
         static Report report = new Report();
+        static BeverageQuantityChecker checker = new BeverageQuantityChecker();
+        static EmailNotifier notifier = new EmailNotifier();
+
 
         public static string CreateDrink(string order)
         {
             string[] ingredients = order.Split(':');
+            // Check is machine is empty
+            if (checker.IsEmpty(ingredients[0]))
+            {
+                notifier.NotifyMissingDrink(order);
+                return "No more drinks avaible";
+            }
+
             StringBuilder stringBuilder = new StringBuilder("Drink maker ");
 
             // Adding drink
@@ -109,6 +119,7 @@ namespace CoffeeMachine
         public static void ResetData()
         {
             report = new Report();
+            notifier = new EmailNotifier();
         }
     }
 }
